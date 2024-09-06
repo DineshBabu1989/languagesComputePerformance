@@ -138,3 +138,42 @@ Total CPU Time = User Time + Sys Time = 177.19 + 41.83 = 219.02 seconds
 CPU Utilization = (Total CPU Time / Real Time) * 100 = (219.02 / 220.55) * 100 ≈ 99.31%
 RAM used: 8,540,995,584 bytes ≈ 8.14 GB
 ```
+
+```
+Python
+
+(base) dineshbabu@Dineshs-MacBook-Pro-2 languagePerformance % /usr/bin/time -l python indexPython.py
+Python Execution Time: 12.171764 seconds
+Number of primes: 5761455
+       12.26 real        12.06 user         0.19 sys
+          1008582656  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               66060  page reclaims
+                   2  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                 402  involuntary context switches
+        106413328676  instructions retired
+         38979734138  cycles elapsed
+          1005947712  peak memory footprint
+
+Total CPU Time = User Time + Sys Time = 12.06 + 0.19 = 12.25 seconds
+CPU Utilization = (Total CPU Time / Real Time) * 100 = (12.25 / 12.26) * 100 ≈ 99.92%
+RAM used: 1,008,582,656 bytes ≈ 962.0 MB
+```
+
+## Summary
+| Language | Execution Time (s) | CPU Utilization (%) | RAM Used (MB) | Number of Primes |
+|----------|-------------------:|--------------------:|--------------:|------------------|
+| Go       |              0.867 |              114.6% |         299.5 | 5,761,455        |
+| Python   |             12.172 |               99.9% |         962.0 | 5,761,455        |
+| Node.js  |             23.555 |              138.5% |       6,400.0 | 5,761,455        |
+| C#       |            106.106 |              100.0% |         200.0 | 5,761,455        |
+| Elixir   |            220.093 |               99.3% |       8,140.0 | 5,761,455        |
