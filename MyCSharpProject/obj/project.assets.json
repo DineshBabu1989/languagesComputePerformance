@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/dineshbabu/Documents/R&D/goVsnode/MyCSharpProject/MyCSharpProject.csproj",
+      "projectUniqueName": "/Users/dineshbabu/Documents/R&D/languagePerformance/MyCSharpProject/MyCSharpProject.csproj",
       "projectName": "MyCSharpProject",
-      "projectPath": "/Users/dineshbabu/Documents/R&D/goVsnode/MyCSharpProject/MyCSharpProject.csproj",
+      "projectPath": "/Users/dineshbabu/Documents/R&D/languagePerformance/MyCSharpProject/MyCSharpProject.csproj",
       "packagesPath": "/Users/dineshbabu/.nuget/packages/",
-      "outputPath": "/Users/dineshbabu/Documents/R&D/goVsnode/MyCSharpProject/obj/",
+      "outputPath": "/Users/dineshbabu/Documents/R&D/languagePerformance/MyCSharpProject/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/dineshbabu/.nuget/NuGet/NuGet.Config"

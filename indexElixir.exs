@@ -1,48 +1,48 @@
-defmodule Sieve do
-  def sieve_of_eratosthenes(n) when n >= 2 do
-    # Step 1: Create a list of booleans representing prime status
-    is_prime = List.duplicate(true, n + 1)
-    is_prime = List.replace_at(is_prime, 0, false)
-    is_prime = List.replace_at(is_prime, 1, false)
+defmodule SieveOfEratosthenes do
+  def sieve(n) do
+    is_prime = :array.new(n + 1, default: true)
+    is_prime = :array.set(0, false, :array.set(1, false, is_prime))
 
-    # Step 2: Call the recursive sieve function
-    sieve_helper(is_prime, 2, n)
+    do_sieve(is_prime, 2, n)
   end
 
-  defp sieve_helper(is_prime, i, n) when i * i <= n do
-    if is_prime[i] do
-      is_prime = mark_multiples(is_prime, i, i * i, n)
-    end
-    sieve_helper(is_prime, i + 1, n)
+  defp do_sieve(is_prime, i, n) when i * i > n do
+    collect_primes(is_prime, 2, n, [])
   end
 
-  defp sieve_helper(is_prime, _i, _n), do: is_prime
-
-  defp mark_multiples(is_prime, _prime, j, n) when j > n, do: is_prime
-
-  defp mark_multiples(is_prime, prime, j, n) do
-    if j <= n do
-      is_prime = List.replace_at(is_prime, j, false)
-      mark_multiples(is_prime, prime, j + prime, n)
+  defp do_sieve(is_prime, i, n) do
+    if :array.get(i, is_prime) do
+      is_prime = mark_multiples(is_prime, i * i, n, i)
+      do_sieve(is_prime, i + 1, n)
     else
-      is_prime
+      do_sieve(is_prime, i + 1, n)
     end
   end
 
-  def primes_up_to(n) when n >= 2 do
-    is_prime = sieve_of_eratosthenes(n)
+  defp mark_multiples(is_prime, j, n, _i) when j > n do
+    is_prime
+  end
 
-    # Step 4: Extract the prime numbers
-    for i <- 2..n, is_prime[i], do: i
+  defp mark_multiples(is_prime, j, n, i) do
+    mark_multiples(:array.set(j, false, is_prime), j + i, n, i)
+  end
+
+  defp collect_primes(_is_prime, i, n, primes) when i > n do
+    Enum.reverse(primes)
+  end
+
+  defp collect_primes(is_prime, i, n, primes) do
+    if :array.get(i, is_prime) do
+      collect_primes(is_prime, i + 1, n, [i | primes])
+    else
+      collect_primes(is_prime, i + 1, n, primes)
+    end
   end
 end
 
-# Measure execution time
-N = 100_000_000
+n = 100000000
 
-start_time = :os.system_time(:millisecond)
-primes = Sieve.primes_up_to(N)
-end_time = :os.system_time(:millisecond)
+{time, primes} = :timer.tc(fn -> SieveOfEratosthenes.sieve(n) end)
 
-IO.puts("Execution Time: #{end_time - start_time} ms")
+IO.puts("Elixir Execution Time: #{time / 1_000_000} seconds")
 IO.puts("Number of primes: #{length(primes)}")

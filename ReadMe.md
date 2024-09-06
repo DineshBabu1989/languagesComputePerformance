@@ -107,5 +107,34 @@ Total CPU time = user + sys = 106.85 + 0.69 = 107 seconds
 CPU Utilization = (Total CPU Time / Real Time) * 100 
                 = (107  / 106.85) * 100 = 100%
 
-RAM used - 189 MB
+RAM used - 200 MB
+```
+
+```
+
+(base) dineshbabu@Dineshs-MacBook-Pro-2 languagePerformance % /usr/bin/time -l elixir indexElixir.exs
+Elixir Execution Time: 220.093398 seconds
+Number of primes: 5761455
+      220.55 real       177.19 user        41.83 sys
+          8540995584  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+            44169111  page reclaims
+                  41  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   2  messages sent
+                   0  messages received
+                   0  signals received
+                4659  voluntary context switches
+               40706  involuntary context switches
+       2835775345729  instructions retired
+        687998340694  cycles elapsed
+         10754061952  peak memory footprint
+
+Total CPU Time = User Time + Sys Time = 177.19 + 41.83 = 219.02 seconds
+CPU Utilization = (Total CPU Time / Real Time) * 100 = (219.02 / 220.55) * 100 ≈ 99.31%
+RAM used: 8,540,995,584 bytes ≈ 8.14 GB
 ```
