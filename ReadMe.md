@@ -4,6 +4,12 @@
 - no libraries
 - we measure computational time taken and memory
 
+## Algorithemic complexity
+
+```
+ time complexity: O(NloglogN)
+
+```
 
 ### Task
 The goal was to compare the performance and memory usage between Node.js and Go when running a CPU-intensive task: finding prime numbers up to 
@@ -81,33 +87,31 @@ RAM used - 299.45 MB
 ```
 # C sharp
 
-(base) dineshbabu@Dineshs-MacBook-Pro-2 MyCSharpProject %  /usr/bin/time -l dotnet run
+(base) dineshbabu@Dineshs-MacBook-Pro-2 MyCSharpProject % /usr/bin/time -l dotnet run
 Number of primes: 5761455
-Execution Time: 106106.419 ms
-      106.85 real       106.05 user         0.69 sys
-           189399040  maximum resident set size
+Execution Time: 1030.12 ms
+        1.70 real         1.85 user         0.21 sys
+           192069632  maximum resident set size
                    0  average shared memory size
                    0  average unshared data size
                    0  average unshared stack size
-               20029  page reclaims
+               27551  page reclaims
                    0  page faults
                    0  swaps
                    0  block input operations
                    0  block output operations
-                  35  messages sent
-                  60  messages received
-                  10  signals received
-                 259  voluntary context switches
-               37238  involuntary context switches
-          8020939564  instructions retired
-          3330049067  cycles elapsed
-           147408832  peak memory footprint
+                  40  messages sent
+                 145  messages received
+                   1  signals received
+                  42  voluntary context switches
+                5347  involuntary context switches
+          7506600092  instructions retired
+          3088621977  cycles elapsed
+           152029184  peak memory footprint
 
-Total CPU time = user + sys = 106.85 + 0.69 = 107 seconds
-CPU Utilization = (Total CPU Time / Real Time) * 100 
-                = (107  / 106.85) * 100 = 100%
-
-RAM used - 200 MB
+Total CPU Time = User Time + Sys Time = 1.85 + 0.21 = 2.06 seconds
+Real Time (wall-clock time) = 1.70 seconds
+CPU Utilization = (Total CPU Time / Real Time) * 100 = (2.06 / 1.70) * 100 ≈ 121.2%
 ```
 
 ```
@@ -173,7 +177,7 @@ RAM used: 1,008,582,656 bytes ≈ 962.0 MB
 | Language | Execution Time (s) | CPU Utilization (%) | RAM Used (MB) | Number of Primes |
 |----------|-------------------:|--------------------:|--------------:|------------------|
 | Go       |              0.867 |              114.6% |         299.5 | 5,761,455        |
+| C#       |              1.70  |              121.2% |         192.1 | 5,761,455        |
 | Python   |             12.172 |               99.9% |         962.0 | 5,761,455        |
 | Node.js  |             23.555 |              138.5% |       6,400.0 | 5,761,455        |
-| C#       |            106.106 |              100.0% |         200.0 | 5,761,455        |
 | Elixir   |            220.093 |               99.3% |       8,140.0 | 5,761,455        |

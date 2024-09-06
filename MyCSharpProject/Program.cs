@@ -4,33 +4,58 @@ class Program
 {
   static void Main(string[] args)
   {
-    int limit = 100000000; // Change this to your desired limit
-    int count = 0;
+    int N = 100000000; // Limit
 
     var startTime = DateTime.Now;
 
-    for (int num = 2; num <= limit; num++)
+    var primes = SieveOfEratosthenes(N);
+
+    var endTime = DateTime.Now;
+    var executionTime = endTime - startTime;
+
+    Console.WriteLine($"Number of primes: {primes.Length}");
+    Console.WriteLine($"Execution Time: {executionTime.TotalMilliseconds} ms");
+  }
+
+  static int[] SieveOfEratosthenes(int N)
+  {
+    bool[] isPrime = new bool[N + 1];
+
+    for (int i = 2; i <= N; i++)
     {
-      if (IsPrime(num))
+      isPrime[i] = true;
+    }
+
+    for (int i = 2; i * i <= N; i++)
+    {
+      if (isPrime[i])
+      {
+        for (int j = i * i; j <= N; j += i)
+        {
+          isPrime[j] = false;
+        }
+      }
+    }
+
+    int count = 0;
+    for (int i = 2; i <= N; i++)
+    {
+      if (isPrime[i])
       {
         count++;
       }
     }
 
-    var endTime = DateTime.Now;
-    var executionTime = endTime - startTime;
-
-    Console.WriteLine($"Number of primes: {count}");
-    Console.WriteLine($"Execution Time: {executionTime.TotalMilliseconds} ms");
-  }
-
-  static bool IsPrime(int number)
-  {
-    if (number < 2) return false;
-    for (int i = 2; i <= Math.Sqrt(number); i++)
+    int[] primes = new int[count];
+    int index = 0;
+    for (int i = 2; i <= N; i++)
     {
-      if (number % i == 0) return false;
+      if (isPrime[i])
+      {
+        primes[index++] = i;
+      }
     }
-    return true;
+
+    return primes;
   }
 }
